@@ -36,10 +36,15 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     python -m pip install -r requirements.txt
 
 # Switch to the non-privileged user.
-USER appuser
 
 # Copy the source code.
 COPY . .
+
+RUN chown -R appuser:appuser /app
+
+USER appuser
+
+RUN python3 manage.py collectstatic --no-input
 
 # Expose the application port.
 EXPOSE 8000
