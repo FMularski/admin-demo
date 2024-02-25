@@ -1,0 +1,21 @@
+1. custom admin page
+admin site as an object - index, reorganizing navigation (get_app_list)
+
+2. Custom presentation of data
+list view - list_display, list_editable, search_fields, list_filter, list_per_page, ordering + get methods
+readonly_fields - format_html
+change view - fields, fieldsets
+inlines - model, fields, readonly_fields, max_num, min_num, extra, can_delete, ordering
+
+3. Admin actions
+actions, get_actions
+
+4. Hooks method
+save_model (save object), save_formset (save related managed by inlines)
+delete_model (single delete), delete_queryset (deleted through list view)
+
+5. extending admin template
+
+6. django-admin-interface
+
+7. vee admin
