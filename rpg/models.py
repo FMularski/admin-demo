@@ -47,6 +47,12 @@ class Character(models.Model):
     guild = models.ForeignKey(Guild, on_delete=models.PROTECT, related_name="characters")
     gold = models.PositiveIntegerField(default=0)
     quests = models.ManyToManyField(Quest, related_name="characters")
+    level = models.PositiveSmallIntegerField(default=1)
+    experience = models.PositiveIntegerField(default=0)
+    experience_level_up = models.PositiveIntegerField(default=100)
+
+    def __str__(self):
+        return f"{self.character_class} {self.name} [Lv. {self.level}]"
 
 
 class Rarity(models.Model):
@@ -90,6 +96,7 @@ class Item(models.Model):
     rarity = models.ForeignKey(Rarity, on_delete=models.PROTECT, related_name="items")
     boosted_stat = models.CharField(max_length=20, choices=StatisticsChoices.choices)
     value = models.IntegerField()
+    character = models.ForeignKey(Character, on_delete=models.CASCADE, related_name="items")
 
     def __str__(self):
         return self.name
