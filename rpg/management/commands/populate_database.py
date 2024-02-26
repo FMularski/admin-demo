@@ -22,6 +22,8 @@ class Command(BaseCommand):
         User.objects.create_superuser(username="admin", password="admin")
 
     def handle(self, *args, **options):
+        self._create_admin()
+
         for fixture in self.fixtures:
             call_command("loaddata", fixture)
 
