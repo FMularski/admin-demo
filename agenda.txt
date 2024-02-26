@@ -5,21 +5,23 @@ admin site as an object - index, reorganizing navigation (get_app_list)
 1.3 create custom admin config in demo/apps.py
 1.4 replace django.contrib.admin with the custom admin config in demo/settings.py
 
-2. Custom presentation of data
-list view - list_display, list_editable, search_fields, list_filter, list_per_page, ordering + get methods
-readonly_fields - format_html
+2. Custom presentation of data - list views [feat/2-list-view]
+2.1 apply list_display, list_editable, readonly_fields, search_fields, list_filter, list_per_page, ordering + get_methods
+2.2 format_html
+
+3. Custom representation of data - change views [feat/3-change-view]
 change view - fields, fieldsets
 inlines - model, fields, readonly_fields, max_num, min_num, extra, can_delete, ordering
 
-3. Admin actions
+4. Admin actions
 actions, get_actions
 
-4. Hooks method
+5. Hooks method
 save_model (save object), save_formset (save related managed by inlines)
 delete_model (single delete), delete_queryset (deleted through list view)
 
-5. extending admin template
+6. extending admin template
 
-6. django-admin-interface
+7. django-admin-interface
 
-7. vee admin
+8. vee admin

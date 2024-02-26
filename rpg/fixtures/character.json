@@ -112,7 +112,7 @@
       "pk": 10,
       "fields": {
         "name": "Ivor",
-        "character_class": 4,
+        "character_class": 3,
         "statistics": 10,
         "guild": 2,
         "gold": 325,
@@ -126,7 +126,7 @@
         "name": "Kael",
         "character_class": 5,
         "statistics": 11,
-        "guild": 3,
+        "guild": 2,
         "gold": 375,
         "quests": [8, 12]
       }

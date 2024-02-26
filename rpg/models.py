@@ -27,6 +27,14 @@ class Statistics(models.Model):
     base_intelligence = models.IntegerField(default=10)
     base_agility = models.IntegerField(default=10)
 
+    @property
+    def health(self):
+        return self.base_health
+
+    @property
+    def max_health(self):
+        return self.base_max_health
+
 
 class Quest(models.Model):
     title = models.CharField(max_length=100)
