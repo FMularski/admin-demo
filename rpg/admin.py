@@ -1,9 +1,7 @@
-from typing import Any
 from django.conf import settings
 from django.contrib import admin
-from django.db.models import Count, F
-from django.db.models.query import QuerySet
-from django.http import HttpRequest
+from django.db.models import Count
+from django.urls import reverse
 from django.utils.html import format_html
 
 from rpg import models
@@ -128,7 +126,7 @@ class CharacterAdmin(admin.ModelAdmin):
         width = 100
         resource = getattr(kwargs["obj"], kwargs["resource"])
         resource_max = getattr(kwargs["obj"], f"max_{kwargs['resource']}")
-        percent_width = int(resource/ resource_max * width)
+        percent_width = int(resource / resource_max * width)
 
         out_bar_style = f"""
             border-radius: 5px;
@@ -155,13 +153,13 @@ class CharacterAdmin(admin.ModelAdmin):
 
     def health(self, obj):
         return self.resource_bar(obj=obj.statistics, resource="health", color="green")
-    
+
     def mana(self, obj):
         return self.resource_bar(obj=obj.statistics, resource="mana", color="blue")
-    
+
     def exp(self, obj):
         return self.resource_bar(obj=obj, resource="experience", color="#4b84de")
-    
+
     def gold_(self, obj):
         gold_style = f"""
             width: 10px;
@@ -180,4 +178,28 @@ class CharacterAdmin(admin.ModelAdmin):
 
 @admin.register(models.Item)
 class ItemAdmin(admin.ModelAdmin):
-    pass
+    list_display = "name", "icon_", "rarity", "bonus", "held_by"
+    search_fields = ("name",)
+    list_filter = "rarity", "boosted_stat"
+
+    def icon_(self, obj):
+        style = f"""
+            width: 64px;
+            height: 64px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 5px 5px {obj.rarity.color};
+        """
+        icon_html = f"""
+            <img src="{settings.MEDIA_URL}{obj.icon.name}" style="{style}" />
+        """
+        return format_html(icon_html)
+
+    def bonus(self, obj):
+        return f"+{obj.value} {obj.boosted_stat}"
+
+    # shortcut to a related object
+    def held_by(self, obj):
+        a_html = f"""
+            <a href="{reverse('admin:rpg_character_change', kwargs={"object_id": obj.character.pk})}">{obj.character}</a>
+        """
+        return format_html(a_html)
