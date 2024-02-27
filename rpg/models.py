@@ -100,6 +100,16 @@ class Character(models.Model):
     def __str__(self):
         return f"{self.character_class} {self.name} [Lv. {self.level}]"
 
+    def check_level_up(self):
+        if self.experience < self.max_experience:
+            return False
+
+        self.level += 1
+        self.experience = 0
+        self.max_experience *= 2
+
+        return True
+
 
 class Rarity(models.Model):
     COLOR_PALETTE = [

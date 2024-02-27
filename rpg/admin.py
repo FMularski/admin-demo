@@ -265,9 +265,15 @@ class CharacterAdmin(admin.ModelAdmin):
                 winner = attacker_2
                 break
 
-        # check level up in save_model
-        winner.experience += 50
         winner.gold += 500
+        winner.experience += 50
+        if winner.check_level_up():
+            self.message_user(
+                request,
+                f"{winner.name} has been promoted to level {winner.level}!",
+                messages.SUCCESS,
+            )
+
         winner.save()
 
         self.message_user(
