@@ -7,7 +7,8 @@
         "rarity": 1,
         "boosted_stat": "strength",
         "value": 200,
-        "character": 1
+        "character": 1,
+        "icon": "items/sword-of-light.png"
       }
     },
     {
@@ -18,7 +19,8 @@
         "rarity": 2,
         "boosted_stat": "agility",
         "value": 150,
-        "character": 2
+        "character": 2,
+        "icon": "items/cloak-of-shadows.png"
       }
     },
     {
@@ -29,7 +31,8 @@
         "rarity": 3,
         "boosted_stat": "intelligence",
         "value": 250,
-        "character": 3
+        "character": 3,
+        "icon": "items/staff-of-ages.png"
       }
     },
     {
@@ -40,7 +43,8 @@
         "rarity": 4,
         "boosted_stat": "mana",
         "value": 100,
-        "character": 4
+        "character": 4,
+        "icon": "items/ring-of-power.png"
       }
     },
     {
@@ -51,7 +55,8 @@
         "rarity": 1,
         "boosted_stat": "agility",
         "value": 180,
-        "character": 5
+        "character": 5,
+        "icon": "items/dagger-of-silence.png"
       }
     },
     {
@@ -62,7 +67,8 @@
         "rarity": 2,
         "boosted_stat": "intelligence",
         "value": 220,
-        "character": 6
+        "character": 6,
+        "icon": "items/helm-of-insight.png"
       }
     },
     {
@@ -73,7 +79,8 @@
         "rarity": 3,
         "boosted_stat": "agility",
         "value": 190,
-        "character": 7
+        "character": 7,
+        "icon": "items/boots-of-the-windwalker.png"
       }
     },
     {
@@ -84,7 +91,8 @@
         "rarity": 4,
         "boosted_stat": "strength",
         "value": 210,
-        "character": 8
+        "character": 8,
+        "icon": "items/amulet-of-the-sun.png"
       }
     },
     {
@@ -95,7 +103,8 @@
         "rarity": 1,
         "boosted_stat": "strength",
         "value": 160,
-        "character": 9
+        "character": 9,
+        "icon": "items/gauntlers-of-the-strength.png"
       }
     },
     {
@@ -106,7 +115,8 @@
         "rarity": 2,
         "boosted_stat": "intelligence",
         "value": 240,
-        "character": 10
+        "character": 10,
+        "icon": "items/robe-of-the-archmage.png"
       }
     },
     {
@@ -117,7 +127,8 @@
         "rarity": 3,
         "boosted_stat": "strength",
         "value": 200,
-        "character": 11
+        "character": 11,
+        "icon": "items/shield-of-the-ancients.png"
       }
     },
     {
@@ -128,7 +139,8 @@
         "rarity": 4,
         "boosted_stat": "agility",
         "value": 170,
-        "character": 12
+        "character": 12,
+        "icon": "items/bow-of-the-hawk.png"
       }
     },
     {
@@ -139,7 +151,8 @@
         "rarity": 1,
         "boosted_stat": "strength",
         "value": 300,
-        "character": 1
+        "character": 1,
+        "icon": "items/crystal-blade.png"
         }
     },
     {
@@ -150,7 +163,8 @@
         "rarity": 2,
         "boosted_stat": "agility",
         "value": 250,
-        "character": 2
+        "character": 2,
+        "icon": "items/shadow-cloak.png"
         }
     },
     {
@@ -161,7 +175,8 @@
         "rarity": 3,
         "boosted_stat": "intelligence",
         "value": 350,
-        "character": 3
+        "character": 3,
+        "icon": "items/mystic-staff.png"
         }
     },
     {
@@ -172,7 +187,8 @@
         "rarity": 4,
         "boosted_stat": "mana",
         "value": 200,
-        "character": 4
+        "character": 4,
+        "icon": "items/eternal-ring.png"
         }
     },
     {
@@ -183,7 +199,8 @@
         "rarity": 1,
         "boosted_stat": "agility",
         "value": 280,
-        "character": 5
+        "character": 5,
+        "icon": "items/phoenix-feather.png"
         }
     },
     {
@@ -194,7 +211,8 @@
         "rarity": 2,
         "boosted_stat": "strength",
         "value": 220,
-        "character": 6
+        "character": 6,
+        "icon": "items/goblins-trinket.png"
         }
     },
     {
@@ -205,7 +223,8 @@
         "rarity": 3,
         "boosted_stat": "intelligence",
         "value": 360,
-        "character": 7
+        "character": 7,
+        "icon": "items/wizards-tome.png"
         }
     },
     {
@@ -216,7 +235,8 @@
         "rarity": 4,
         "boosted_stat": "strength",
         "value": 310,
-        "character": 8
+        "character": 8,
+        "icon": "items/valkyrie-spear.png"
         }
     },
     {
@@ -227,7 +247,8 @@
         "rarity": 1,
         "boosted_stat": "mana",
         "value": 240,
-        "character": 9
+        "character": 9,
+        "icon": "items/draconic-pendant.png"
         }
     },
     {
@@ -238,7 +259,8 @@
         "rarity": 2,
         "boosted_stat": "agility",
         "value": 270,
-        "character": 10
+        "character": 10,
+        "icon": "items/elemental-boots.png"
         }
     },
     {
@@ -249,7 +271,8 @@
         "rarity": 3,
         "boosted_stat": "strength",
         "value": 230,
-        "character": 11
+        "character": 11,
+        "icon": "items/nightshade-poison.png"
         }
     },
     {
@@ -260,7 +283,8 @@
         "rarity": 4,
         "boosted_stat": "intelligence",
         "value": 340,
-        "character": 12
+        "character": 12,
+        "icon": "items/arcane-orb.png"
         }
     },
     {
@@ -271,7 +295,8 @@
         "rarity": 1,
         "boosted_stat": "strength",
         "value": 280,
-        "character": 1
+        "character": 1,
+        "icon": "items/blade-of-the-fallen.png"
         }
     },
     {
@@ -282,7 +307,8 @@
         "rarity": 2,
         "boosted_stat": "agility",
         "value": 260,
-        "character": 2
+        "character": 2,
+        "icon": "items/veil-of-midnight.png"
         }
     },
     {
@@ -293,7 +319,8 @@
         "rarity": 3,
         "boosted_stat": "intelligence",
         "value": 320,
-        "character": 3
+        "character": 3,
+        "icon": "items/orb-of-the-seer.png"
         }
     },
     {
@@ -304,7 +331,8 @@
         "rarity": 4,
         "boosted_stat": "health",
         "value": 350,
-        "character": 4
+        "character": 4,
+        "icon": "items/heart-of-tarrasque.png"
         }
     },
     {
@@ -315,7 +343,8 @@
         "rarity": 1,
         "boosted_stat": "agility",
         "value": 300,
-        "character": 5
+        "character": 5,
+        "icon": "items/shadow-amulet.png"
         }
     },
     {
@@ -326,7 +355,8 @@
         "rarity": 2,
         "boosted_stat": "strength",
         "value": 270,
-        "character": 6
+        "character": 6,
+        "icon": "items/luminous-gauntlets.png"
         }
     },
     {
@@ -337,7 +367,8 @@
         "rarity": 3,
         "boosted_stat": "mana",
         "value": 310,
-        "character": 7
+        "character": 7,
+        "icon": "items/cape-of-flames.png"
         }
     },
     {
@@ -348,7 +379,8 @@
         "rarity": 4,
         "boosted_stat": "strength",
         "value": 290,
-        "character": 8
+        "character": 8,
+        "icon": "items/belt-of-giant-strength.png"
         }
     },
     {
@@ -359,7 +391,8 @@
         "rarity": 1,
         "boosted_stat": "agility",
         "value": 280,
-        "character": 9
+        "character": 9,
+        "icon": "items/echo-sabre.png"
         }
     },
     {
@@ -370,7 +403,8 @@
         "rarity": 2,
         "boosted_stat": "intelligence",
         "value": 260,
-        "character": 10
+        "character": 10,
+        "icon": "items/mantle-of-intelligence.png"
         }
     },
     {
@@ -381,7 +415,8 @@
         "rarity": 3,
         "boosted_stat": "agility",
         "value": 300,
-        "character": 11
+        "character": 11,
+        "icon": "items/boots-of-travel.png"
         }
     },
     {
@@ -392,7 +427,8 @@
         "rarity": 4,
         "boosted_stat": "health",
         "value": 330,
-        "character": 12
+        "character": 12,
+        "icon": "items/aegis-of-the-immortal.png"
         }
     },
     {
@@ -403,7 +439,8 @@
         "rarity": 1,
         "boosted_stat": "strength",
         "value": 340,
-        "character": 1
+        "character": 1,
+        "icon": "items/gleaming-halberd.png"
         }
     },
     {
@@ -414,7 +451,8 @@
         "rarity": 2,
         "boosted_stat": "intelligence",
         "value": 320,
-        "character": 2
+        "character": 2,
+        "icon": "items/band-of-enlightenment.png"
         }
     },
     {
@@ -425,7 +463,8 @@
         "rarity": 3,
         "boosted_stat": "agility",
         "value": 360,
-        "character": 3
+        "character": 3,
+        "icon": "items/runeblade.png"
         }
     },
     {
@@ -436,7 +475,8 @@
         "rarity": 4,
         "boosted_stat": "strength",
         "value": 300,
-        "character": 4
+        "character": 4,
+        "icon": "items/pendant-of-force.png"
         }
     },
     {
@@ -447,7 +487,8 @@
         "rarity": 1,
         "boosted_stat": "agility",
         "value": 285,
-        "character": 5
+        "character": 5,
+        "icon": "items/boots-of-alacrity.png"
         }
     },
     {
@@ -458,7 +499,8 @@
         "rarity": 2,
         "boosted_stat": "intelligence",
         "value": 275,
-        "character": 6
+        "character": 6,
+        "icon": "items/mystic-wrap.png"
         }
     },
     {
@@ -469,7 +511,8 @@
         "rarity": 3,
         "boosted_stat": "mana",
         "value": 290,
-        "character": 7
+        "character": 7,
+        "icon": "items/sigil-of-silence.png"
         }
     },
     {
@@ -480,7 +523,8 @@
         "rarity": 4,
         "boosted_stat": "health",
         "value": 310,
-        "character": 8
+        "character": 8,
+        "icon": "items/crown-of-the-depths.png"
         }
     },
     {
@@ -491,7 +535,8 @@
         "rarity": 1,
         "boosted_stat": "intelligence",
         "value": 330,
-        "character": 9
+        "character": 9,
+        "icon": "items/stormcaller.png"
         }
     },
     {
@@ -502,7 +547,8 @@
         "rarity": 2,
         "boosted_stat": "mana",
         "value": 350,
-        "character": 10
+        "character": 10,
+        "icon": "items/void-orb.png"
         }
     },
     {
@@ -513,7 +559,8 @@
         "rarity": 3,
         "boosted_stat": "agility",
         "value": 265,
-        "character": 11
+        "character": 11,
+        "icon": "items/wraith-band.png"
         }
     },
     {
@@ -524,7 +571,8 @@
         "rarity": 4,
         "boosted_stat": "health",
         "value": 280,
-        "character": 12
+        "character": 12,
+        "icon": "items/guardian-greaves.png"
         }
     }   
   ]
