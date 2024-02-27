@@ -10,8 +10,8 @@ admin site as an object - index, reorganizing navigation (get_app_list)
 2.2 format_html
 
 3. Custom representation of data - change views [feat/3-change-view]
-change view - fields, fieldsets
-inlines - model, fields, readonly_fields, max_num, min_num, extra, can_delete, ordering
+3.1 change view - fields, readonly_fields, fieldsets
+3.2 inlines - model, fields, readonly_fields, max_num, min_num, extra, can_delete, ordering
 
 4. Admin actions
 actions, get_actions

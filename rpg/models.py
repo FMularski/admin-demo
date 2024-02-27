@@ -33,12 +33,12 @@ class Statistics(models.Model):
     def get_item_bonus(self, stat):
         stat_bonus = 0
         effective_items = self.character.items.filter(boosted_stat=stat)
-        
+
         for item in effective_items:
             stat_bonus += item.value
-        
+
         return stat_bonus
-            
+
     @property
     def health(self):
         hp = self.base_health + self.get_item_bonus("health") - self.sustained_damage
@@ -47,7 +47,7 @@ class Statistics(models.Model):
     @property
     def max_health(self):
         return self.base_max_health + self.get_item_bonus("health")
-    
+
     @property
     def mana(self):
         mn = self.base_mana + self.get_item_bonus("mana") - self.depleted_mana
@@ -56,7 +56,19 @@ class Statistics(models.Model):
     @property
     def max_mana(self):
         return self.base_max_mana + self.get_item_bonus("mana")
-    
+
+    @property
+    def strength(self):
+        return self.base_strength + self.get_item_bonus("strength")
+
+    @property
+    def intelligence(self):
+        return self.base_intelligence + self.get_item_bonus("intelligence")
+
+    @property
+    def agility(self):
+        return self.base_agility + self.get_item_bonus("agility")
+
     @property
     def is_dead(self):
         return self.health > 0

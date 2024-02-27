@@ -4,7 +4,7 @@ from django.db.models import Count
 from django.urls import reverse
 from django.utils.html import format_html
 
-from rpg import models
+from rpg import inlines, models
 
 
 @admin.register(models.CharacterClass)
@@ -18,6 +18,10 @@ class CharacterClassAdmin(admin.ModelAdmin):
     )
     # enable ordering by particular fields
     ordering = ("name",)
+
+    # disable changing name after creating an object
+    def get_readonly_fields(self, request, obj):
+        return ("name",) if obj else tuple()
 
     # read_only fields can be defined by a custom method named as the field
     def active_characters(self, obj):
@@ -41,6 +45,8 @@ class GuildAdmin(admin.ModelAdmin):
         "members",
     )
     ordering = ("name",)
+    inlines = [inlines.CharacterInline]
+    readonly_fields = ("banner_preview",)
 
     # creating a html element with use of format_html
     def banner_preview(self, obj):
@@ -121,6 +127,47 @@ class CharacterAdmin(admin.ModelAdmin):
         "gold_",  # underscore used to prevent field name collision
     )
     list_filter = ("guild",)
+    # fields non present in a model and used in fieldsets
+    # must be declared as readonly
+    readonly_fields = (
+        "exp",
+        "gold_",
+        "level",
+        "statistics_",
+    )
+
+    # fieldsets allow to group fields in a logical way
+    fieldsets = (
+        ("General", {"fields": ("name", "character_class", "guild")}),
+        ("Adventures", {"fields": ("quests",)}),
+        ("Mastery and wealth", {"fields": ("level", "exp", "statistics_", "gold_")}),
+    )
+    # convenient way to present related objects
+    inlines = [inlines.ItemInline]
+
+    def statistics_(self, obj):
+        style_flex_center = "display: flex; align-items: center;"
+        style_margin_5 = "margin-right: 5px;"
+
+        base_strength = obj.statistics.base_strength
+        strength = obj.statistics.strength
+        base_intelligence = obj.statistics.base_intelligence
+        intelligence = obj.statistics.intelligence
+        base_agility = obj.statistics.base_agility
+        agility = obj.statistics.agility
+
+        statistics_html = f"""
+            <div style="{style_flex_center}">
+                <span style="{style_margin_5}"><b>Health:</b> {self.health(obj)}</span>
+                <span><b>Mana</b>: {self.mana(obj)}</span>
+            </div>
+            <br/>
+            <span><b>Strength:</b> {strength} (+{strength - base_strength})</span><br/><br/>
+            <span><b>Intelligence:</b> {intelligence} (+{intelligence - base_intelligence})</span><br/><br/>
+            <span><b>Agility:</b> {obj.statistics.agility} (+{agility - base_agility})</span>
+        """
+
+        return format_html(statistics_html)
 
     def resource_bar(self, **kwargs):
         width = 100
@@ -181,6 +228,28 @@ class ItemAdmin(admin.ModelAdmin):
     list_display = "name", "icon_", "rarity", "bonus", "held_by"
     search_fields = ("name",)
     list_filter = "rarity", "boosted_stat"
+    readonly_fields = ("icon_",)
+    fieldsets = (
+        ("General", {"fields": ("name", "rarity", "character")}),
+        (
+            "Boost",
+            {
+                "fields": (
+                    "boosted_stat",
+                    "value",
+                )
+            },
+        ),
+        (
+            "Appearience",
+            {
+                "fields": (
+                    "icon",
+                    "icon_",
+                )
+            },
+        ),
+    )
 
     def icon_(self, obj):
         style = f"""
