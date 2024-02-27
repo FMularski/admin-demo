@@ -1,6 +1,9 @@
+from typing import Any
 from django.conf import settings
 from django.contrib import admin
-from django.db.models import Count
+from django.db.models import Count, F
+from django.db.models.query import QuerySet
+from django.http import HttpRequest
 from django.utils.html import format_html
 
 from rpg import models
@@ -15,8 +18,6 @@ class CharacterClassAdmin(admin.ModelAdmin):
         "description",
         "active_characters",
     )
-    # fields non-present in the model definition must be declared as readonly
-    readonly_fields = ("active_characters",)
     # enable ordering by particular fields
     ordering = ("name",)
 
@@ -38,10 +39,6 @@ class GuildAdmin(admin.ModelAdmin):
     list_display = (
         "pk",
         "name",
-        "banner_preview",
-        "members",
-    )
-    readonly_fields = (
         "banner_preview",
         "members",
     )
@@ -117,16 +114,68 @@ class QuestAdmin(admin.ModelAdmin):
 class CharacterAdmin(admin.ModelAdmin):
     list_display = (
         "name",
+        "character_class",
         "level",
         "guild",
-        "healthbar",
+        "health",
+        "mana",
+        "exp",
+        "gold_",  # underscore used to prevent field name collision
     )
     list_filter = ("guild",)
 
-    def healthbar(self, obj):
-        hp_percent = obj.statistics.health / obj.statistics.max_health
+    def resource_bar(self, **kwargs):
+        width = 100
+        resource = getattr(kwargs["obj"], kwargs["resource"])
+        resource_max = getattr(kwargs["obj"], f"max_{kwargs['resource']}")
+        percent_width = int(resource/ resource_max * width)
 
-        return hp_percent
+        out_bar_style = f"""
+            border-radius: 5px;
+            width: {width}px;
+            height: 10px;
+            background-color: #CCCCCC;
+            padding: 2px;
+        """
+        in_bar_style = f"""
+            border-radius: 5px;
+            width: {percent_width}px;
+            height: 10px;
+            background-color: {kwargs["color"]};
+        """
+
+        healthbar_html = f"""
+            <div style="{out_bar_style}">
+                <div style="{in_bar_style}"></div>
+            </div>
+            <span>{resource}/{resource_max}</span>
+        """
+
+        return format_html(healthbar_html)
+
+    def health(self, obj):
+        return self.resource_bar(obj=obj.statistics, resource="health", color="green")
+    
+    def mana(self, obj):
+        return self.resource_bar(obj=obj.statistics, resource="mana", color="blue")
+    
+    def exp(self, obj):
+        return self.resource_bar(obj=obj, resource="experience", color="#4b84de")
+    
+    def gold_(self, obj):
+        gold_style = f"""
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #f5d142;
+            display: inline-block;
+            margin-right: 5px;
+        """
+        gold_html = f"""
+            <div style="{gold_style}"></div><span>{obj.gold}</span> 
+        """
+
+        return format_html(gold_html)
 
 
 @admin.register(models.Item)
