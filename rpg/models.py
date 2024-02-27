@@ -71,7 +71,7 @@ class Statistics(models.Model):
 
     @property
     def is_dead(self):
-        return self.health > 0
+        return self.health <= 0
 
 
 class Quest(models.Model):

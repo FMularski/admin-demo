@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.db.models import Count
 from django.urls import reverse
 from django.utils.html import format_html
@@ -144,6 +144,8 @@ class CharacterAdmin(admin.ModelAdmin):
     )
     # convenient way to present related objects
     inlines = [inlines.ItemInline]
+    # custom actions available in the list view
+    actions = ["duel", "healing_spell"]
 
     def statistics_(self, obj):
         style_flex_center = "display: flex; align-items: center;"
@@ -221,6 +223,84 @@ class CharacterAdmin(admin.ModelAdmin):
         """
 
         return format_html(gold_html)
+
+    @admin.action(description="Duel")
+    def duel(self, request, queryset):
+        if queryset.count() > 2:
+            self.message_user(request, "Only 2 characters can duel at a time.", messages.ERROR)
+            return
+
+        duelist_1 = queryset.first()
+        duelist_2 = queryset.last()
+
+        if duelist_1.guild == duelist_2.guild:
+            self.message_user(request, "You cannot attack your allies.", messages.ERROR)
+            return
+
+        if duelist_1.statistics.is_dead or duelist_2.statistics.is_dead:
+            self.message_user(request, "Fighting a dead man is an insanity.", messages.ERROR)
+            return
+
+        attacker_1, attacker_2 = (
+            (duelist_1, duelist_2)
+            if duelist_1.statistics.agility > duelist_2.statistics.agility
+            else (duelist_2, duelist_1)
+        )
+        winner = None  # To be decided!
+
+        while True:
+            attacker_2.statistics.sustained_damage += attacker_1.statistics.strength
+
+            attacker_2.statistics.save()
+
+            if attacker_2.statistics.is_dead:
+                winner = attacker_1
+                break
+
+            attacker_1.statistics.sustained_damage += attacker_2.statistics.strength
+
+            attacker_1.statistics.save()
+
+            if attacker_1.statistics.is_dead:
+                winner = attacker_2
+                break
+
+        # check level up in save_model
+        winner.experience += 50
+        winner.gold += 500
+        winner.save()
+
+        self.message_user(
+            request,
+            f"{winner} claimed their victory and were rewarded with 500 gold and 50 exp points.",
+            messages.SUCCESS,
+        )
+
+    @admin.action(description="Cast a healing spell")
+    def healing_spell(self, request, queryset):
+        mage_class = models.CharacterClass.objects.get(name="Mage")
+        priest_class = models.CharacterClass.objects.get(name="Priest")
+
+        if not queryset.filter(character_class__in=[mage_class, priest_class]):
+            self.message_user(
+                request, "Only mages and priests can cast healing spells.", messages.ERROR
+            )
+            return
+
+        for character in queryset:
+            character.statistics.sustained_damage -= 100
+
+            # check for overhealing
+            if character.statistics.sustained_damage < 0:
+                character.statistics.sustained_damage = 0
+
+            character.statistics.save()
+
+        self.message_user(
+            request,
+            f"Healing spell casted on {[character for character in queryset]}",
+            messages.SUCCESS,
+        )
 
 
 @admin.register(models.Item)
