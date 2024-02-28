@@ -1,6 +1,8 @@
+from typing import Any
 from django.conf import settings
 from django.contrib import admin, messages
 from django.db.models import Count
+from django.http import HttpRequest
 from django.urls import reverse
 from django.utils.html import format_html
 
@@ -83,6 +85,26 @@ class GuildAdmin(admin.ModelAdmin):
         return queryset.annotate(members_count=Count("characters"))
 
     members.admin_order_field = "members_count"
+
+    # hook for handling related objects in inlines
+    def save_formset(self, request, form, formset, change):
+        members_data = formset.cleaned_data
+        """
+        cleaned_data looks like this:
+        [
+            {'id': <Character: Paladin Fenris [Lv. 1]>, 'guild': <Guild: Crystal Guardians>}, 
+            {'id': <Character: Ranger Garrick [Lv. 1]>, 'guild': <Guild: Crystal Guardians>},
+            ...
+        ]
+        """
+        for member_data in members_data:
+            member = member_data["id"]
+            member.level += 1
+            member.save()
+
+        self.message_user(request, "Guild buff applied: Level up!", messages.SUCCESS)
+
+        return super().save_formset(request, form, formset, change)  # just does formset.save()
 
 
 @admin.register(models.Rarity)
@@ -307,6 +329,29 @@ class CharacterAdmin(admin.ModelAdmin):
             f"Healing spell casted on {[character for character in queryset]}",
             messages.SUCCESS,
         )
+
+    # hook fired when hitting save button
+    # applies to the main object
+    def save_model(self, request, obj, form, change):
+        if change:
+            # apply permanent buffs
+            obj.statistics.base_strength += 50
+            obj.statistics.base_intelligence += 50
+            obj.statistics.base_agility += 50
+            obj.statistics.save()
+
+            # levels of messages
+            # {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}
+            messages.set_level(request, messages.WARNING)
+            self.message_user(request, f"{obj.name} received hook method's blessing.", messages.WARNING)
+
+        return super().save_model(request, obj, form, change)  # just does obj.save()
+    
+    def delete_model(self, request, obj):
+        messages.set_level(request, messages.WARNING)
+        self.message_user(request, "The hero has fallen. The guild is very sad.", messages.WARNING)
+
+        return super().delete_model(request, obj)  # just does obj.delete()
 
 
 @admin.register(models.Item)
