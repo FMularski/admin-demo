@@ -1,4 +1,4 @@
-# Customazing django admin - RPG demo
+# Customizing django admin - RPG demo
 ## 1. custom admin page [feat/1-nav]
 admin site as an object - index, reorganizing navigation (get_app_list)
 * 1.1 demo/admin_model_nav.py
