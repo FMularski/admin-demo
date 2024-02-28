@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rpg",
+    "import_export",  # https://django-import-export.readthedocs.io/en/stable/
 ]
 
 MIDDLEWARE = [
