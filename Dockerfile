@@ -18,17 +18,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     # If you encounter other similar compilation issues, you might need additional packages like 'libffi-dev' or 'libssl-dev'.
     && rm -rf /var/lib/apt/lists/*
 
-# Create a non-privileged user to run the app.
-ARG UID=10001
-RUN adduser \
-    --disabled-password \
-    --gecos "" \
-    --home "/nonexistent" \
-    --shell "/sbin/nologin" \
-    --no-create-home \
-    --uid "${UID}" \
-    appuser
-
 # Download dependencies with caching to speed up builds.
 # Note: Make sure you have 'requirements.txt' available at build context.
 RUN --mount=type=cache,target=/root/.cache/pip \
@@ -39,10 +28,6 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 
 # Copy the source code.
 COPY . .
-
-RUN chown -R appuser:appuser /app
-
-USER appuser
 
 RUN python3 manage.py collectstatic --no-input
 
