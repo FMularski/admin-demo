@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "colorfield",
-    "django.contrib.admin",
+    "demo.apps.RPGAdminConfig",  # replaced django.contrib.admin
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
