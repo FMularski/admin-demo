@@ -5,12 +5,13 @@ from django.db.models import Count
 from django.http import HttpRequest
 from django.urls import reverse
 from django.utils.html import format_html
+from import_export.admin import ImportExportModelAdmin
 
 from rpg import inlines, models
 
 
 @admin.register(models.CharacterClass)
-class CharacterClassAdmin(admin.ModelAdmin):
+class CharacterClassAdmin(ImportExportModelAdmin):
     # columns in the list view
     list_display = (
         "pk",
@@ -39,7 +40,7 @@ class CharacterClassAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.Guild)
-class GuildAdmin(admin.ModelAdmin):
+class GuildAdmin(ImportExportModelAdmin):
     list_display = (
         "pk",
         "name",
@@ -108,7 +109,7 @@ class GuildAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.Rarity)
-class RarityAdmin(admin.ModelAdmin):
+class RarityAdmin(ImportExportModelAdmin):
     list_display = (
         "pk",
         "name",
@@ -125,7 +126,7 @@ class RarityAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.Quest)
-class QuestAdmin(admin.ModelAdmin):
+class QuestAdmin(ImportExportModelAdmin):
     list_display = (
         "title",
         "description",
@@ -137,7 +138,7 @@ class QuestAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.Character)
-class CharacterAdmin(admin.ModelAdmin):
+class CharacterAdmin(ImportExportModelAdmin):
     list_display = (
         "name",
         "character_class",
@@ -355,7 +356,7 @@ class CharacterAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.Item)
-class ItemAdmin(admin.ModelAdmin):
+class ItemAdmin(ImportExportModelAdmin):
     list_display = "name", "icon_", "rarity", "bonus", "held_by"
     search_fields = ("name",)
     list_filter = "rarity", "boosted_stat"
