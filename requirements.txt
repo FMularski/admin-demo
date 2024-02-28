@@ -2,3 +2,7 @@ Django==3.2
 django-colorfield==0.11.0
 pre-commit==3.5.0
 psycopg2-binary==2.9.9
+docutils==0.20.1
+django-import-export==3.3.6
+django-admin-interface==0.26.1
+djangorestframework==3.14.0
