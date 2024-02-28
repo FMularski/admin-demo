@@ -13,15 +13,18 @@ admin site as an object - index, reorganizing navigation (get_app_list)
 3.1 change view - fields, readonly_fields, fieldsets
 3.2 inlines - model, fields, readonly_fields, max_num, min_num, extra, can_delete, ordering
 
-4. Admin actions
-actions, get_actions
+4. Admin actions [feat/4-actions]
 
-5. Hooks method
-save_model (save object), save_formset (save related managed by inlines)
-delete_model (single delete), delete_queryset (deleted through list view)
+5. Hooks method [feat/5-hooks]
+5.1 save_model (character)
+5.3 delete_model (character)
+5.2 save_formset (guild)
 
-6. extending admin template
+6. Useful packages [feat/6-libs]
+6.1 admindocs
+6.2 django-export-import
+6.3 django-admin-interface
 
-7. django-admin-interface
-
-8. vee admin
+7. Applying a custom theme [feat/7-theme]
+7.1 custom template, staticfiles
+7.2 commander
