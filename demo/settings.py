@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "admin_interface",  # https://pypi.org/project/django-admin-interface/
     "django.contrib.admindocs",  # https://docs.djangoproject.com/en/3.2/ref/contrib/admin/admindocs/#module-django.contrib.admindocs
     "colorfield",
     "demo.apps.RPGAdminConfig",  # replaced django.contrib.admin
@@ -42,6 +43,10 @@ INSTALLED_APPS = [
     "rpg",
     "import_export",  # https://django-import-export.readthedocs.io/en/stable/
 ]
+
+# django-admin-interface
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

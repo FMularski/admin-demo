@@ -63,4 +63,17 @@ NAV_MENU_ORDER = [
             },
         ],
     },
+    {
+        "app_name": "",
+        "model_name": "",
+        "menu_name": "Interface settings",
+        "models": [
+            {
+                "app_name": "admin_interface",
+                "model_name": "theme",
+                "menu_name": "Themes",
+                "models": [],
+            },
+        ],
+    },
 ]
