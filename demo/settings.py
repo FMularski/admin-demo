@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rpg",
     "import_export",  # https://django-import-export.readthedocs.io/en/stable/
+    "commander",
 ]
 
 # django-admin-interface
@@ -64,7 +65,9 @@ ROOT_URLCONF = "demo.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            "/app/templates"  # tell django about directory with extended templates
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -131,6 +134,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "static"
+STATICFILES_DIRS = [BASE_DIR / "staticfiles"]  # tell django about directory with static files used by the dark theme
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"

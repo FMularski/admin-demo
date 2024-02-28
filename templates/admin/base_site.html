@@ -1,0 +1,33 @@
+{% extends 'admin/base_site.html' %}
+
+{% load static %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static '/css/admin_dark_theme.css' %}" />{% endblock %}
+{% block footer %}
+    <div id="footer"></div>
+    <div id="url-holder" logo-url="{% static '/img/logo.svg' %}" favicon-url="{% static '/img/favicon.png' %}"></div>
+    {% if user.is_superuser %}
+        {% csrf_token %}
+        <button id="open-commander-btn">&lt;/&gt;</button>
+        <div id="dark-panel" class="hidden"></div>
+        <div id="admin-commander" class="hidden">
+            <h3>
+                <span>&lt;/&gt; Commander</span>
+                <button id="close-commander-btn">Exit</button>
+            </h3>
+            <div id="commander-input">
+                <div id="manage">python3 manage.py </div>
+                <input type="text"/>
+            </div>
+            <button id="execute-commander-btn" class="disabled">Execute</button>
+            <div id="output" class="hidden">
+                <hr />
+                <p id="output-header"><span>Output:</span><button id="copy-commander-btn" class="hidden">Copy</button></p>
+                <div id="output-preview"><div class="loader"></div></div>
+            </div>
+        </div>
+        <script src="{% static '/js/adminCommander.js' %}"></script>
+    {% endif %}
+    <script src="{% static '/js/clickableRows.js' %}"></script>
+    <script src="{% static '/js/logoFavicon.js' %}"></script>
+{% endblock %}

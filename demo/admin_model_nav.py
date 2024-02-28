@@ -76,4 +76,17 @@ NAV_MENU_ORDER = [
             },
         ],
     },
+    {
+        "app_name": "",
+        "model_name": "",
+        "menu_name": "Commander",
+        "models": [
+            {
+                "app_name": "commander",
+                "model_name": "admincommanderlog",
+                "menu_name": "Logs",
+                "models": [],
+            },
+        ],
+    },
 ]
