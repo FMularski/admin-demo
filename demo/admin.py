@@ -30,19 +30,7 @@ class RPGAdminSite(admin.AdminSite):
         return TemplateResponse(request, self.index_template or "admin/index.html", context)
 
     def get_app_list(self, request):
-        # append admindocs to navigation
-        know_how = {
-            "name": "Know how",
-            "models": [
-                {
-                    "name": "Documentation",
-                    "admin_url": "/admin/doc/",
-                    "view_only": True,
-                },
-            ],
-        }
-        
-        return [know_how] + self.get_custom_app_list(NAV_MENU_ORDER, self._registry, request)
+        return self.get_custom_app_list(NAV_MENU_ORDER, self._registry, request)
 
     def get_custom_app_list(self, nodes, registry, request, app_list=None):
         if app_list is None:

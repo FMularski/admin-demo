@@ -1,17 +1,14 @@
-from typing import Any
 from django.conf import settings
 from django.contrib import admin, messages
 from django.db.models import Count
-from django.http import HttpRequest
 from django.urls import reverse
 from django.utils.html import format_html
-from import_export.admin import ImportExportModelAdmin
 
 from rpg import inlines, models
 
 
 @admin.register(models.CharacterClass)
-class CharacterClassAdmin(ImportExportModelAdmin):
+class CharacterClassAdmin(admin.ModelAdmin):
     # columns in the list view
     list_display = (
         "pk",
@@ -40,7 +37,7 @@ class CharacterClassAdmin(ImportExportModelAdmin):
 
 
 @admin.register(models.Guild)
-class GuildAdmin(ImportExportModelAdmin):
+class GuildAdmin(admin.ModelAdmin):
     list_display = (
         "pk",
         "name",
@@ -109,7 +106,7 @@ class GuildAdmin(ImportExportModelAdmin):
 
 
 @admin.register(models.Rarity)
-class RarityAdmin(ImportExportModelAdmin):
+class RarityAdmin(admin.ModelAdmin):
     list_display = (
         "pk",
         "name",
@@ -126,7 +123,7 @@ class RarityAdmin(ImportExportModelAdmin):
 
 
 @admin.register(models.Quest)
-class QuestAdmin(ImportExportModelAdmin):
+class QuestAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "description",
@@ -138,7 +135,7 @@ class QuestAdmin(ImportExportModelAdmin):
 
 
 @admin.register(models.Character)
-class CharacterAdmin(ImportExportModelAdmin):
+class CharacterAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "character_class",
@@ -356,7 +353,7 @@ class CharacterAdmin(ImportExportModelAdmin):
 
 
 @admin.register(models.Item)
-class ItemAdmin(ImportExportModelAdmin):
+class ItemAdmin(admin.ModelAdmin):
     list_display = "name", "icon_", "rarity", "bonus", "held_by"
     search_fields = ("name",)
     list_filter = "rarity", "boosted_stat"
